@@ -3,12 +3,11 @@ import { motion } from "framer-motion"
 import data from "@/data.json"
 
 interface AppHeaderProps {
-  userType?: 'admin' | 'doctor'
   currentPage?: string
 }
 
-export function AppHeader({ userType, currentPage }: AppHeaderProps) {
-  const { app, navMain, patients, frontDeskRequests } = data
+export function AppHeader({ currentPage }: AppHeaderProps) {
+  const { app, navMain } = data
 
   // Map page keys to display names with counts
   const getPageTitle = (page: string) => {
@@ -16,13 +15,6 @@ export function AppHeader({ userType, currentPage }: AppHeaderProps) {
     if (!navItem) return app.name
 
     let title = navItem.title
-
-    // Add counts for specific pages
-    if (page === 'patients') {
-      title += ` (${patients.length})`
-    } else if (page === 'front-desk') {
-      title += ` (${frontDeskRequests.length})`
-    }
 
     return title
   }
@@ -36,13 +28,6 @@ export function AppHeader({ userType, currentPage }: AppHeaderProps) {
         </span>
       </div>
       <div className="flex items-center gap-4">
-
-      {userType && (
-          <span className="text-sm text-muted-foreground capitalize">
-            {userType} Login
-          </span>
-        )}
-        
         {/* Branding - Powered by EzMedTech */}
         {/* <motion.div
           initial={{ opacity: 0, scale: 0.8 }}

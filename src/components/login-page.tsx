@@ -3,18 +3,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff } from "lucide-react"
-import { IconShield, IconStethoscope } from "@tabler/icons-react"
 import data from "@/data.json"
 
 interface LoginPageProps {
-  onLogin: (userType: 'admin' | 'doctor') => void
+  onLogin: () => void
 }
 
 export function LoginPage({ onLogin }: LoginPageProps) {
   const { app } = data
   const { login } = app
 
-  const [userType, setUserType] = useState<'admin' | 'doctor'>('admin')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -24,7 +22,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
     e.preventDefault()
     // Here you would typically validate credentials
     // For demo purposes, we'll just call onLogin
-    onLogin(userType)
+    onLogin()
   }
 
   const handleForgotPassword = () => {
@@ -56,10 +54,6 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
       <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-background min-h-screen lg:min-h-0">
         <div className="w-full max-w-md mx-auto space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-lg neumorphic-pressed">
-          <div className="lg:hidden text-center mb-6 sm:mb-8">
-            <h1 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">EZ Medtech</h1>
-            <p className="text-sm text-muted-foreground">Medical Dashboard</p>
-          </div>
 
           <div className="space-y-4">
             <div className="text-center">
@@ -67,30 +61,6 @@ export function LoginPage({ onLogin }: LoginPageProps) {
               <p className="text-sm sm:text-base text-muted-foreground mt-2">
                 {login.subtitle}
               </p>
-            </div>
-
-            {/* User Type Selection */}
-            <div className="grid grid-cols-2 gap-3">
-              <Button
-                onClick={() => setUserType('admin')}
-                variant={userType === 'admin' ? 'default' : 'outline'}
-                size="sm"
-                className="flex items-center justify-center gap-2 p-2 text-xs font-medium rounded-lg transition-all duration-200 h-auto"
-              >
-                <IconShield className="w-4 h-4" />
-                <span className="hidden sm:inline">{login.adminLabel}</span>
-                <span className="sm:hidden">Admin</span>
-              </Button>
-              <Button
-                onClick={() => setUserType('doctor')}
-                variant={userType === 'doctor' ? 'default' : 'outline'}
-                size="sm"
-                className="flex items-center justify-center gap-2 p-2 text-xs font-medium rounded-lg transition-all duration-200 h-auto"
-              >
-                <IconStethoscope className="w-4 h-4" />
-                <span className="hidden sm:inline">{login.doctorLabel}</span>
-                <span className="sm:hidden">Doctor</span>
-              </Button>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -170,7 +140,6 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                 className="w-full text-sm font-medium neumorphic-pressed text-primary hover:text-primary-foreground rounded-lg shadow-none cursor-pointer transition-all duration-200 px-3 py-2"
               >
                 <span>{login.loginButton}</span>
-                <span className="text-lg ml-2">→</span>
               </Button>
             </form>
           </div>

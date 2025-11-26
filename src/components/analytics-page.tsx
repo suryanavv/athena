@@ -33,7 +33,7 @@ import {
 import data from "@/data.json"
 
 // Destructure data from imported JSON
-const { patientAgeData, appointmentData, appointmentConfig, dashboard, api_cancellation_count } = data
+const { api_cancellation_count } = data
 const appointments = data.appointments || []
 
 // Transform API cancellation count data for chart
@@ -57,17 +57,6 @@ const generateDynamicTicks = (maxValue: number) => {
 const patientChartConfig = {
   value: {
     label: "Patients",
-  },
-} satisfies ChartConfig
-
-const appointmentChartConfig = {
-  scheduled: {
-    label: "Scheduled",
-    color: "var(--color-chart-1)",
-  },
-  cancelled: {
-    label: "Cancelled",
-    color: "var(--destructive)",
   },
 } satisfies ChartConfig
 
@@ -241,77 +230,8 @@ const cancellationData = rawCancellationReasons.map((r, i) => ({
 
       {/* All Charts and Sections */}
       <div className="grid grid-cols-1 gap-3 sm:gap-4 px-4 lg:px-6 xl:grid-cols-3">
-        {/* First Row */}
-        {/* Recent Appointments */}
-        <Card className="neumorphic-inset border-0 xl:col-span-1">
-          <CardHeader>
-              <CardTitle className="text-base font-semibold tracking-tight">Recent Appointments</CardTitle>
-              <div className="flex flex-wrap gap-2">
-                {appointmentConfig.filters.slice(2).map((filter) => (
-                  <button
-                    key={filter.value}
-                    onClick={() => setSelectedAppointmentFilter(filter.label)}
-                    className={`px-3 py-1 text-xs rounded-md transition-all duration-200 ${selectedAppointmentFilter === filter.label
-                      ? 'neumorphic-pressed text-primary'
-                      : 'neumorphic-soft neumorphic-hover text-muted-foreground'
-                    }`}
-                  >
-                    {filter.label}
-                  </button>
-                ))}
-              </div>
-          </CardHeader>
-          <CardContent className="-mt-2">
-            <div className="space-y-3 max-h-80 overflow-y-auto">
-              {getFilteredAppointments().length > 0 ? (
-                getFilteredAppointments().map((appointment, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between p-3 neumorphic-pressed rounded-lg transition-all duration-200"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-2 h-2 rounded-full ${
-                        appointment.appointment_status === 'scheduled'
-                          ? 'bg-green-500'
-                          : appointment.appointment_status === 'rescheduled'
-                          ? 'bg-yellow-500'
-                          : 'bg-red-500'
-                      }`}></div>
-                      <div>
-                        <div className="font-medium text-sm">{appointment.patient_name}</div>
-                        <div className="text-xs text-muted-foreground">
-                          {appointment.appointment_date} • {appointment.appointment_time}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {appointment.appointment_type} • {appointment.duration} min
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs text-muted-foreground">{appointment.patient_phone}</div>
-                      <div className={`text-xs px-2 py-1 rounded-full capitalize ${
-                        appointment.appointment_status === 'scheduled'
-                          ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                          : appointment.appointment_status === 'rescheduled'
-                          ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
-                          : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
-                      }`}>
-                        {appointment.appointment_status}
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  No appointments found for the selected filter.
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Monthly Appointment Comparison */}
-        <Card className="neumorphic-inset border-0 xl:col-span-2">
+        <Card className="neumorphic-inset border-0">
           <CardHeader>
             <CardTitle>
               {dashboard.sections.monthlyAppointmentComparison.title}
@@ -322,8 +242,8 @@ const cancellationData = rawCancellationReasons.map((r, i) => ({
               Change: {dashboard.sections.monthlyAppointmentComparison.percentage_change}%
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <ChartContainer config={monthlyComparisonChartConfig} className="h-[300px] w-full">
+          <CardContent className="-ml-10 flex justify-center items-center">
+            <ChartContainer config={monthlyComparisonChartConfig} className="h-[350px] w-full">
               <LineChart
                 accessibilityLayer
                 data={dashboard.sections.monthlyAppointmentComparison.data}
@@ -379,7 +299,7 @@ const cancellationData = rawCancellationReasons.map((r, i) => ({
 
         {/* Second Row */}
         {/* API Appointments Counts */}
-        <Card className="neumorphic-inset border-0 xl:col-span-2">
+        <Card className="neumorphic-inset border-0">
 
           <CardHeader>
             <CardTitle>
@@ -389,7 +309,7 @@ const cancellationData = rawCancellationReasons.map((r, i) => ({
               Total appointments from API - Scheduled: {api_cancellation_count.scheduled}, Rescheduled: {api_cancellation_count.rescheduled}, Cancelled: {api_cancellation_count.cancelled}
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="-ml-4 flex justify-center items-center">
             <ChartContainer config={apiAppointmentsChartConfig} className="h-[250px] w-full sm:h-[280px] lg:h-[320px]">
               <BarChart
                 accessibilityLayer
@@ -415,6 +335,7 @@ const cancellationData = rawCancellationReasons.map((r, i) => ({
                   axisLine={false}
                   tickFormatter={(value) => value.charAt(0).toUpperCase() + value.slice(1)}
                 />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.8} />
                 <ChartTooltip
                   cursor={false}
                   content={<ChartTooltipContent indicator="dashed" className="neumorphic-card border-0 shadow-none" />}
@@ -431,7 +352,7 @@ const cancellationData = rawCancellationReasons.map((r, i) => ({
                     />
                   ))}
                 </Bar>
-                <ChartLegend />
+                {/* <ChartLegend /> */}
               </BarChart>
             </ChartContainer>
           </CardContent>

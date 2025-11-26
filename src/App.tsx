@@ -11,17 +11,17 @@ import {
 } from "@/components/ui/sidebar"
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState("dashboard")
+  const [currentPage, setCurrentPage] = useState("appointments")
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const handleLogin = () => {
     setIsAuthenticated(true)
-    setCurrentPage("dashboard")
+    setCurrentPage("appointments")
   }
 
   const handleLogout = () => {
     setIsAuthenticated(false)
-    setCurrentPage("dashboard")
+    setCurrentPage("appointments")
   }
 
 
@@ -34,7 +34,7 @@ export default function App() {
       case "logs":
         return <LogsPage />
       default:
-        return <AnalyticsPage onPageChange={setCurrentPage} />
+        return <AppointmentPage />
     }
   }
 

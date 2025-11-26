@@ -2123,47 +2123,7 @@
       }
     ],
     "sections": {
-      "appointmentTrends": {
-        "title": "Appointment Trends",
-        "description": "Today's Appointments - 5",
-        "legend": [
-          {
-            "label": "Scheduled",
-            "color": "var(--chart-1)"
-          },
-          {
-            "label": "Cancelled",
-            "color": "var(--destructive)"
-          }
-        ]
-      },
-      "patientsOverview": {
-        "title": "Patients Overview",
-        "description": "Total Patients: 22",
-        "icon": "IconUsers",
-        "legend": [
-          {
-            "label": "Young Adults (18-25)",
-            "value": 12,
-            "color": "#8884d8"
-          },
-          {
-            "label": "Adults (26-35)",
-            "value": 6,
-            "color": "#82ca9d"
-          },
-          {
-            "label": "Middle Age (36-45)",
-            "value": 3,
-            "color": "#ffc658"
-          },
-          {
-            "label": "Others",
-            "value": 1,
-            "color": "#ff7c7c"
-          }
-        ]
-      },
+      
       "monthlyAppointmentComparison": {
         "title": "Monthly Appointment Comparison",
         "current_month": 9,
@@ -2205,16 +2165,16 @@
   },
   "navMain": [
     {
-      "title": "Dashboard",
-      "url": "#",
-      "icon": "IconDashboard",
-      "page": "dashboard"
-    },
-    {
       "title": "Appointments",
       "url": "#",
       "icon": "IconCalendar",
       "page": "appointments"
+    },
+    {
+      "title": "Analytics",
+      "url": "#",
+      "icon": "IconDashboard",
+      "page": "dashboard"
     },
     {
       "title": "Logs",

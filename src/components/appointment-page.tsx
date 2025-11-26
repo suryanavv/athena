@@ -1,683 +1,386 @@
-// /mnt/data/appointment-page.tsx
-import { useState, useEffect } from "react"
-import { IconChevronLeft, IconChevronRight, IconCalendar } from "@tabler/icons-react"
-import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence } from "framer-motion"
+import { useMemo, useState } from "react"
 import data from "@/data.json"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
-// Optimized animation variants for better performance
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05, // Reduced stagger delay
-      delayChildren: 0.05
-    }
+const filterOptions = [
+  "All",
+  "Today",
+  "Tomorrow",
+  "This Week",
+  "Current Month",
+  "Last Month",
+  "Past Bookings",
+  "Future Bookings",
+]
+
+const cancelledStatuses = new Set(["cancelled", "canceled"])
+const completedStatuses = new Set(["completed"])
+
+const parseDateString = (dateStr?: string) => {
+  if (!dateStr) return null
+  const parts = dateStr.split(/[/-]/).map(Number)
+  if (parts.length !== 3 || parts.some((part) => Number.isNaN(part))) {
+    return null
   }
+  let [first, second, year] = parts
+  const month = first > 12 && second <= 12 ? second : first
+  const day = first > 12 && second <= 12 ? first : second
+  return new Date(year, month - 1, day)
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 10 }, // Reduced y offset
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3 } // Faster duration
+const parseDateInput = (value: string) => {
+  if (!value) return null
+  const [year, month, day] = value.split("-").map(Number)
+  if ([year, month, day].some((part) => Number.isNaN(part))) {
+    return null
   }
+  return new Date(year, month - 1, day)
 }
 
-
-const staggerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.03, // Much faster stagger
-      delayChildren: 0.05
-    }
-  }
+const parseTimeString = (timeStr?: string) => {
+  if (!timeStr) return null
+  const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
+  if (!match) return null
+  let [_, hours, minutes, period] = match
+  let hour = Number(hours)
+  const minute = Number(minutes)
+  if (Number.isNaN(hour) || Number.isNaN(minute)) return null
+  period = period.toUpperCase()
+  if (period === "PM" && hour !== 12) hour += 12
+  if (period === "AM" && hour === 12) hour = 0
+  return hour * 60 + minute
 }
 
-const statusBadgeVariants = {
-  initial: { scale: 1 },
-  hover: {
-    scale: 1.02, // Reduced scale
-    transition: { duration: 0.15 } // Faster transition
-  },
-  pulse: {
-    scale: [1, 1.05, 1], // Reduced scale range
-    transition: { duration: 1.5, repeat: Infinity } // Slower pulse
-  }
+const parseTimeInput = (value: string) => {
+  if (!value) return null
+  const [hourStr, minuteStr] = value.split(":")
+  const hour = Number(hourStr)
+  const minute = Number(minuteStr)
+  if (Number.isNaN(hour) || Number.isNaN(minute)) return null
+  return hour * 60 + minute
 }
 
-const calendarVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? 100 : -100, // Reduced movement
-    opacity: 0
-  }),
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1
-  },
-  exit: (direction: number) => ({
-    zIndex: 0,
-    x: direction < 0 ? 100 : -100, // Reduced movement
-    opacity: 0
-  })
-}
+const isSameDay = (a: Date, b: Date) =>
+  a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 
+const startOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate())
+const endOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59, 999)
+
+const getStatusBadgeClass = (status?: string) => {
+  const normalized = status?.toLowerCase()
+  if (!normalized) return "bg-muted text-muted-foreground"
+  if (cancelledStatuses.has(normalized)) return "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-200"
+  if (normalized === "rescheduled") return "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-200"
+  if (completedStatuses.has(normalized)) return "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-200"
+  if (normalized === "scheduled") return "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-200"
+  return "bg-muted text-muted-foreground"
+}
 
 export function AppointmentPage() {
-  const { appointmentsByDate } = data
-  const [selectedDate, setSelectedDate] = useState<number | null>(null)
-  const [currentMonth, setCurrentMonth] = useState(11)
-  const [currentYear, setCurrentYear] = useState(2025)
-  const [direction, setDirection] = useState(0)
+  const { appointments = [], user } = data as { appointments?: any[]; user?: { name?: string } }
+  const [search, setSearch] = useState("")
+  const [activeFilter, setActiveFilter] = useState<string>("All")
+  const [dateRange, setDateRange] = useState<{ start: string; end: string }>({ start: "", end: "" })
+  const [timeRange, setTimeRange] = useState<{ start: string; end: string }>({ start: "", end: "" })
 
-  const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ]
+  const welcomeName = user?.name
 
-  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-
-  // Generate full calendar grid with proper day positioning
-  const generateCalendarGrid = (month: number, year: number) => {
-    const firstDay = new Date(year, month - 1, 1).getDay()
-    const daysInMonth = new Date(year, month, 0).getDate()
-    const daysInPrevMonth = new Date(year, month - 1, 0).getDate()
-
-    const calendar: Array<any> = []
-
-    // Previous month days
-    for (let i = firstDay - 1; i >= 0; i--) {
-      calendar.push({
-        date: daysInPrevMonth - i,
-        isCurrentMonth: false,
-        isToday: false,
-        hasAppointments: false,
-        appointments: []
-      })
-    }
-
-    // Current month days
+  const filteredAppointments = useMemo(() => {
     const today = new Date()
-    const isCurrentMonth = month === today.getMonth() + 1 && year === today.getFullYear()
+    const weekStart = startOfDay(new Date(today))
+    weekStart.setDate(today.getDate() - today.getDay())
+    const weekEnd = endOfDay(new Date(weekStart))
+    weekEnd.setDate(weekStart.getDate() + 6)
 
-    for (let date = 1; date <= daysInMonth; date++) {
-      const dateKey = `${year}-${month}-${date}`
-      const appointments = appointmentsByDate[dateKey as keyof typeof appointmentsByDate] || []
-      const hasAppointments = appointments.length > 0
-      const isToday = isCurrentMonth && date === today.getDate()
+    const currentMonthStart = new Date(today.getFullYear(), today.getMonth(), 1)
+    const currentMonthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59, 999)
 
-      calendar.push({
-        date,
-        isCurrentMonth: true,
-        isToday,
-        hasAppointments,
-        appointments
-      })
+    const lastMonthStart = new Date(today.getFullYear(), today.getMonth() - 1, 1)
+    const lastMonthEnd = new Date(today.getFullYear(), today.getMonth(), 0, 23, 59, 59, 999)
+
+    const startDateFilter = parseDateInput(dateRange.start)
+    const endDateFilter = parseDateInput(dateRange.end)
+    const startTimeFilter = parseTimeInput(timeRange.start)
+    const endTimeFilter = parseTimeInput(timeRange.end)
+    const query = search.trim().toLowerCase()
+
+    const matchesPreset = (aptDate: Date | null) => {
+      if (!aptDate) return activeFilter === "All"
+      switch (activeFilter) {
+        case "Today":
+          return isSameDay(aptDate, today)
+        case "Tomorrow": {
+          const tomorrow = new Date(today)
+          tomorrow.setDate(today.getDate() + 1)
+          return isSameDay(aptDate, tomorrow)
+        }
+        case "This Week":
+          return aptDate >= weekStart && aptDate <= weekEnd
+        case "Current Month":
+          return aptDate >= currentMonthStart && aptDate <= currentMonthEnd
+        case "Last Month":
+          return aptDate >= lastMonthStart && aptDate <= lastMonthEnd
+        case "Past Bookings":
+          return aptDate < startOfDay(today)
+        case "Future Bookings":
+          return aptDate > endOfDay(today)
+        default:
+          return true
+      }
     }
 
-    // Next month days to fill the grid
-    const remainingCells = 42 - calendar.length // 6 weeks * 7 days
-    for (let date = 1; date <= remainingCells; date++) {
-      calendar.push({
-        date,
-        isCurrentMonth: false,
-        isToday: false,
-        hasAppointments: false,
-        appointments: []
-      })
+    const getDateTimeValue = (apt: any) => {
+      const date = parseDateString(apt.appointment_date)
+      const time = parseTimeString(apt.appointment_time) ?? 0
+      return (date?.getTime() ?? 0) + time * 60_000
     }
 
-    return calendar
-  }
+    const result = appointments.filter((apt) => {
+      const aptDate = parseDateString(apt.appointment_date)
+      const aptTime = parseTimeString(apt.appointment_time)
 
-  // Get status styling based on appointment status (kept existing mapping)
-  const getStatusStyle = (status: string) => {
-    switch (status?.toLowerCase()) {
-      case 'completed':
-        return 'bg-green-100 text-green-800 neumorphic-inset'
-      case 'in progress':
-        return 'bg-yellow-100 text-yellow-800 neumorphic-inset'
-      case 'scheduled':
-        return 'bg-blue-100 text-blue-800 neumorphic-inset'
-      case 'cancelled':
-        return 'bg-red-100 text-red-800 neumorphic-inset'
-      case 'no-show':
-        return 'bg-gray-100 text-gray-800 neumorphic-inset'
-      default:
-        return 'bg-muted text-muted-foreground neumorphic-inset'
-    }
-  }
+      if (query) {
+        const searchable = [
+          apt.patient_name,
+          apt.appointment_type,
+          apt.appointment_status,
+          apt.patient_phone,
+        ]
+          .filter(Boolean)
+          .map((value) => String(value).toLowerCase())
 
-  // Set today's date as default on component mount
-  useEffect(() => {
-    const today = new Date()
-    setSelectedDate(today.getDate())
-    setCurrentMonth(today.getMonth() + 1)
-    setCurrentYear(today.getFullYear())
-  }, [])
+        if (!searchable.some((value) => value.includes(query))) {
+          return false
+        }
+      }
 
-  const handleDateClick = (date: number, isCurrentMonth: boolean) => {
-    if (isCurrentMonth) {
-      setSelectedDate(date)
-    }
-  }
+      if (!matchesPreset(aptDate)) {
+        return false
+      }
 
-  const handlePrevMonth = () => {
-    setDirection(-1)
-    if (currentMonth === 1) {
-      setCurrentMonth(12)
-      setCurrentYear(currentYear - 1)
-    } else {
-      setCurrentMonth(currentMonth - 1)
-    }
-    setSelectedDate(null)
-  }
+      if (startDateFilter && (!aptDate || aptDate < startDateFilter)) {
+        return false
+      }
 
-  const handleNextMonth = () => {
-    setDirection(1)
-    if (currentMonth === 12) {
-      setCurrentMonth(1)
-      setCurrentYear(currentYear + 1)
-    } else {
-      setCurrentMonth(currentMonth + 1)
-    }
-    setSelectedDate(null)
-  }
+      if (endDateFilter && (!aptDate || aptDate > endDateFilter)) {
+        return false
+      }
 
-  const getTodaysAppointments = () => {
-    const today = new Date()
-    const todayKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
-    return appointmentsByDate[todayKey as keyof typeof appointmentsByDate] || []
-  }
+      if (startTimeFilter !== null) {
+        if (aptTime === null || aptTime < startTimeFilter) {
+          return false
+        }
+      }
 
+      if (endTimeFilter !== null) {
+        if (aptTime === null || aptTime > endTimeFilter) {
+          return false
+        }
+      }
 
-  const getSelectedDateAppointments = () => {
-    if (!selectedDate) return []
-    const dateKey = `${currentYear}-${currentMonth}-${selectedDate}`
-    return appointmentsByDate[dateKey as keyof typeof appointmentsByDate] || []
-  }
+      return true
+    })
 
-  const calendarGrid = generateCalendarGrid(currentMonth, currentYear)
-  const todaysAppointments = getTodaysAppointments()
-  const selectedDateAppointments = getSelectedDateAppointments()
+    return result.sort((a, b) => getDateTimeValue(b) - getDateTimeValue(a))
+  }, [appointments, activeFilter, dateRange.end, dateRange.start, search, timeRange.end, timeRange.start])
+
+  const filteredTotal = filteredAppointments.length
+  const filteredCancelledCount = useMemo(
+    () =>
+      filteredAppointments.filter((apt) =>
+        cancelledStatuses.has((apt.appointment_status || "").toLowerCase()),
+      ).length,
+    [filteredAppointments],
+  )
+  const filteredCompletionRate = filteredTotal
+    ? Math.round(((filteredTotal - filteredCancelledCount) / filteredTotal) * 100)
+    : 0
+  const showDateRange = !(activeFilter === "Today" || activeFilter === "Tomorrow")
 
   return (
-    <motion.div
-      className="space-y-6 px-4 lg:px-6 relative"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Welcome Message */}
-      <motion.div
-        className="text-left py-2"
-        variants={itemVariants}
-      >
-        <motion.h1
-          className="text-2xl md:text-3xl font-bold text-foreground mb-1"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          Welcome Back, Dr. Maartha Nelson
-        </motion.h1>
-        <motion.p
-          className="text-sm md:text-base text-muted-foreground"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        >
-          Here's your appointments overview for today
-        </motion.p>
-      </motion.div>
+    <div className="space-y-6 px-4 lg:px-6">
+      <div>
+        <h1 className="text-3xl font-bold text-primary mt-1">
+          {welcomeName ? `Welcome back, ${welcomeName}!` : "Welcome back!"}
+        </h1>
+        <p className="text-sm text-muted-foreground mt-2">
+          Let’s stay on top of today’s schedule, review recent activity, and jump into any urgent appointments.
+        </p>
+      </div>
+      <div className="space-y-1">
+        <h1 className="text-2xl font-bold text-foreground">Athena Appointments</h1>
+        <p className="text-sm text-muted-foreground">Review and manage every appointment flowing in from Athena.</p>
+      </div>
 
-      {/* Today's Appointments Section */}
-      <motion.div
-        className="-mt-2 space-y-4"
-        variants={itemVariants}
-      >
-        <motion.div
-          className="flex items-center gap-2"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.3, type: "spring", stiffness: 200 }}
-          >
-            <IconCalendar className="w-5 h-5 text-foreground" />
-          </motion.div>
-          <h2 className="text-lg md:text-xl font-semibold">Today's Appointments ({todaysAppointments.length})</h2>
-        </motion.div>
-
-        <AnimatePresence mode="wait">
-          {todaysAppointments.length > 0 ? (
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-              variants={staggerVariants}
-              initial="hidden"
-              animate="visible"
-              exit={{ opacity: 0, y: -20 }}
-            >
-              {todaysAppointments.map((apt: any, index: number) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: index * 0.03 }}
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="neumorphic-inset p-3 md:p-4 rounded-lg neumorphic-hover cursor-pointer"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                        <span className="font-medium text-sm">{apt.time}</span>
-                      </div>
-                      <div className="w-px h-6 bg-muted/50" />
-                      <div className="flex-1">
-                        <span className="font-medium text-sm">{apt.patient}</span>
-                        <p className="text-xs text-muted-foreground">{apt.reason}</p>
-                        <p className="text-xs text-muted-foreground">{apt.doctor}</p>
-                      </div>
-                    </div>
-                    <span
-                      className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(apt.status)}`}
-                    >
-                      {apt.status}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              className="neumorphic-inset p-6 rounded-lg text-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
+      <div className="space-y-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-wrap gap-2">
+            {filterOptions.map((option) => (
+              <Button
+                key={option}
+                variant={activeFilter === option ? "default" : "outline"}
+                size="sm"
+                className={`text-xs font-medium ${
+                  activeFilter === option
+                    ? "bg-primary text-primary neumorphic-pressed"
+                    : "neumorphic-soft"
+                }`}
+                onClick={() => setActiveFilter(option)}
               >
-                <IconCalendar className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
-              </motion.div>
-              <motion.p
-                className="text-muted-foreground"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                No appointments scheduled for today
-              </motion.p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+                {option}
+              </Button>
+            ))}
+            </div>
+            <div className="w-full lg:w-72">
+              <Input
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder="Search appointments..."
+                className="neumorphic-inset border-0 shadow-none"
+              />
+            </div>
+          </div>
 
-      {/* Calendar Section */}
-      <motion.div
-        variants={itemVariants}
-      >
-        {/* Header */}
-        <motion.div
-          className="mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <h1 className="text-lg md:text-xl font-semibold text-foreground">Manage Future Appointments</h1>
-        </motion.div>
-
-        {/* Bento Grid Layout - Calendar and Appointments Table */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-[calc(100%-4rem)]">
-          {/* Appointments Table */}
-          <motion.div
-            className="col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-8 flex flex-col"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            {/* Selected Date Appointments */}
-            <AnimatePresence mode="wait">
-              {selectedDate ? (
-                <motion.div
-                  className="flex-1 flex flex-col"
-                  key={selectedDate}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <motion.div
-                    className="flex items-center justify-between mb-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
+          <div className={`grid gap-4 ${showDateRange ? "md:grid-cols-2" : "md:grid-cols-1"}`}>
+            {showDateRange && (
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Date Range</p>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="text-xs text-muted-foreground hover:text-primary px-2"
+                    disabled={!dateRange.start && !dateRange.end}
+                    onClick={() => setDateRange({ start: "", end: "" })}
                   >
-                    <h2 className="text-sm md:text-lg font-semibold text-foreground">
-                      {new Date(currentYear, currentMonth - 1, selectedDate).toLocaleDateString('en-US', {
-                        weekday: 'short',
-                        month: 'short',
-                        day: 'numeric'
-                      })}
-                    </h2>
-                    <motion.span
-                      className="text-sm text-muted-foreground"
-                      initial={{ scale: 0.8 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.3, type: "spring" }}
-                    >
-                      {selectedDateAppointments.length > 0
-                        ? `${selectedDateAppointments.length} appointments`
-                        : 'No appointments'
-                      }
-                    </motion.span>
-                  </motion.div>
-
-                  <AnimatePresence mode="wait">
-                    {selectedDateAppointments.length > 0 ? (
-                      <motion.div
-                        className="neumorphic-inset rounded-lg p-4 border-0 flex flex-col"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        <div className="overflow-x-auto flex-1">
-                          <div className="h-[44vh] overflow-y-auto">
-                            <table className="w-full text-sm">
-                              <thead className="sticky top-0 z-10 backdrop-blur-sm">
-                                <tr className="border-b-2 border-muted/90 bg-muted/10">
-                                  <th className="text-left font-medium py-3 px-2">Time</th>
-                                  <th className="text-left font-medium py-3 px-2">Patient</th>
-                                  <th className="text-left font-medium py-3 px-2">Reason</th>
-                                  <th className="text-left font-medium py-3 px-2">Doctor</th>
-                                  <th className="text-left font-medium py-3 px-2">Status</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y-2 divide-muted/90">
-                              {selectedDateAppointments.map((apt: any, index: number) => (
-                                <motion.tr
-                                  key={index}
-                                  className="hover:bg-muted/30"
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  transition={{ duration: 0.2, delay: index * 0.02 }}
-                                  whileHover={{
-                                    backgroundColor: "rgba(var(--muted), 0.4)",
-                                    transition: { duration: 0.15 }
-                                  }}
-                                >
-                                  <td className="py-3 px-2 font-medium text-sm">{apt.time}</td>
-                                  <td className="py-3 px-2">
-                                    <div className="flex items-center gap-2">
-                                      <span className="font-medium text-sm">{apt.patient}</span>
-                                    </div>
-                                  </td>
-                                  <td className="py-3 px-2 text-muted-foreground text-sm max-w-xs">
-                                    <div className="truncate" title={apt.reason}>
-                                      {apt.reason}
-                                    </div>
-                                  </td>
-                                  <td className="py-3 px-2 text-muted-foreground text-sm">{apt.doctor}</td>
-                                  <td className="py-3 px-2">
-                                    <motion.span
-                                      className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusStyle(apt.status)}`}
-                                      variants={statusBadgeVariants}
-                                      initial="initial"
-                                      whileHover="hover"
-                                      animate={apt.status === 'in progress' ? 'pulse' : 'initial'}
-                                    >
-                                      {apt.status}
-                                    </motion.span>
-                                  </td>
-                                </motion.tr>
-                              ))}
-                            </tbody>
-                          </table>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        className="neumorphic-inset rounded-lg p-8 border-0 flex flex-col items-center justify-center text-center"
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                      >
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
-                        >
-                          <IconCalendar className="w-12 h-12 text-muted-foreground mb-4" />
-                        </motion.div>
-                        <motion.h3
-                          className="text-lg font-medium text-foreground mb-2"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.4 }}
-                        >
-                          No Appointments Scheduled
-                        </motion.h3>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ) : (
-                <motion.div
-                  className="flex flex-col items-center justify-center"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <motion.div
-                    className="neumorphic-inset rounded-lg p-8 border-0 flex flex-col items-center justify-center text-center max-w-md"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                  >
-                    <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
-                    >
-                      <IconCalendar className="w-16 h-16 text-muted-foreground mb-4" />
-                    </motion.div>
-                    <motion.h3
-                      className="text-xl font-semibold text-foreground mb-2"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.4 }}
-                    >
-                      Select a Date
-                    </motion.h3>
-                    <motion.p
-                      className="text-muted-foreground text-sm"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.3 }}
-                    >
-                      Choose a date from the calendar to view and manage appointments for that day.
-                    </motion.p>
-                  </motion.div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-
-          {/* Calendar Component */}
-          <motion.div
-            className="col-span-12 md:col-span-4 lg:col-span-4 xl:col-span-4"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {/* Calendar Content */}
-            <motion.div
-              className="p-4 items-center justify-center neumorphic-pressed rounded-lg overflow-hidden aspect-square flex flex-col"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-                <motion.div
-                  className="flex items-center gap-2 mb-3"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button
-                      onClick={handlePrevMonth}
-                      variant="outline"
-                      size="sm"
-                      className="h-7 w-7 p-0"
-                    >
-                      <IconChevronLeft className="w-3 h-3" />
-                    </Button>
-                  </motion.div>
-                  <AnimatePresence mode="wait">
-                    <motion.h1
-                      key={`${currentMonth}-${currentYear}`}
-                      className="text-sm md:text-base font-semibold"
-                      initial={{ opacity: 0, x: direction > 0 ? 20 : -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: direction > 0 ? -20 : 20 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {months[currentMonth - 1]} {currentYear}
-                    </motion.h1>
-                  </AnimatePresence>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button
-                      onClick={handleNextMonth}
-                      variant="outline"
-                      size="sm"
-                      className="h-7 w-7 p-0"
-                    >
-                      <IconChevronRight className="w-3 h-3" />
-                    </Button>
-                  </motion.div>
-                </motion.div>
-              <div className="flex-1 flex flex-col">
-                {/* Day Headers */}
-                <motion.div
-                  className="grid grid-cols-7 gap-0 p-1 mb-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.4 }}
-                >
-                  {weekDays.map((day, index) => (
-                    <motion.div
-                      key={day}
-                      className="mx-0.5 text-center text-xs font-medium text-muted-foreground neumorphic-inset px-1 py-1 rounded"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.4 + index * 0.05 }}
-                    >
-                      {day}
-                    </motion.div>
-                  ))}
-                </motion.div>
-
-                {/* Calendar Grid */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`${currentMonth}-${currentYear}`}
-                    className="grid grid-cols-7 gap-0 p-1 flex-1"
-                    variants={calendarVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    custom={direction}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                  >
-                    {calendarGrid.map((day, index) => (
-                      <motion.div
-                        key={index}
-                        onClick={() => day.isCurrentMonth ? handleDateClick(day.date, day.isCurrentMonth) : undefined}
-                        className={`
-                          calendar-cell relative mx-0.5 my-0.5 rounded-lg cursor-pointer
-                          aspect-square flex flex-col justify-center items-center
-                          ${day.isCurrentMonth
-                            ? selectedDate === day.date
-                              ? 'neumorphic-pressed shadow-inner'
-                              : 'neumorphic'
-                            : 'neumorphic-inset opacity-50 cursor-not-allowed'
-                          }
-                          ${day.isToday && day.isCurrentMonth ? 'ring-2 ring-primary ring-inset' : ''}
-                        `}
-                        whileHover={day.isCurrentMonth ? { scale: 1.05 } : {}}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        <div
-                          className={`
-                            text-xs font-medium text-center
-                            ${day.isCurrentMonth
-                              ? selectedDate === day.date
-                                ? 'text-primary font-bold'
-                                : day.isToday
-                                  ? 'text-primary font-bold'
-                                  : 'text-foreground'
-                              : 'text-muted-foreground/60'
-                            }
-                          `}
-                        >
-                          {day.date}
-                        </div>
-
-                        {/* Show appointment count badge */}
-                        <AnimatePresence>
-                          {day.appointments.length > 0 && day.isCurrentMonth && (
-                            <motion.div
-                              className=""
-                              initial={{ scale: 0, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 1 }}
-                              exit={{ scale: 0, opacity: 0 }}
-                              transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-                            >
-                              <motion.div
-                                className={`appointment-badge inline-flex items-center justify-center text-xs font-semibold rounded-full px-1 neumorphic-inset bg-primary/10 text-primary border border-primary/20`}
-                                whileHover={{ scale: 1.1 }}
-                                animate={{
-                                  scale: [1, 1.1, 1],
-                                  transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                                }}
-                              >
-                                {day.appointments.length}
-                              </motion.div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
+                    Clear
+                  </Button>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Input
+                    type="date"
+                    value={dateRange.start}
+                    onChange={(event) => setDateRange((prev) => ({ ...prev, start: event.target.value }))}
+                    className="neumorphic-inset border-0 shadow-none"
+                  />
+                  <span className="text-sm text-muted-foreground">to</span>
+                  <Input
+                    type="date"
+                    value={dateRange.end}
+                    onChange={(event) => setDateRange((prev) => ({ ...prev, end: event.target.value }))}
+                    className="neumorphic-inset border-0 shadow-none"
+                  />
+                </div>
               </div>
-            </motion.div>
-          </motion.div>
+            )}
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Time Range</p>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="text-xs text-muted-foreground hover:text-primary px-2"
+                  disabled={!timeRange.start && !timeRange.end}
+                  onClick={() => setTimeRange({ start: "", end: "" })}
+                >
+                  Clear
+                </Button>
+              </div>
+              <div className="flex items-center gap-3">
+                <Input
+                  type="time"
+                  value={timeRange.start}
+                  onChange={(event) => setTimeRange((prev) => ({ ...prev, start: event.target.value }))}
+                  className="neumorphic-inset border-0 shadow-none"
+                />
+                <span className="text-sm text-muted-foreground">to</span>
+                <Input
+                  type="time"
+                  value={timeRange.end}
+                  onChange={(event) => setTimeRange((prev) => ({ ...prev, end: event.target.value }))}
+                  className="neumorphic-inset border-0 shadow-none"
+                />
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[
+          { label: "Total Appointments", value: filteredTotal },
+          { label: "Cancelled", value: filteredCancelledCount },
+          { label: "Completion Rate", value: `${filteredCompletionRate}%` },
+        ].map((stat) => (
+          <div key={stat.label} className="neumorphic-inset border-0 rounded-2xl p-4">
+            <p className="text-sm font-semibold text-muted-foreground">{stat.label}</p>
+            <p className="text-2xl font-bold mt-1">{stat.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="neumorphic-inset border-0 rounded-2xl p-4 md:p-6">
+        {/* <div className="flex flex-col gap-1 pb-4">
+          <p className="text-base font-semibold">Appointments</p>
+          <p className="text-sm text-muted-foreground">
+            {filteredAppointments.length} result{filteredAppointments.length === 1 ? "" : "s"} shown
+          </p>
+        </div> */}
+        <div className="overflow-x-auto">
+          {filteredAppointments.length > 0 ? (
+            <div className="max-h-[68vh] overflow-y-auto">
+              <table className="w-full min-w-[720px] text-sm">
+                <thead className="sticky top-0 z-10 backdrop-blur-sm">
+                  <tr className="text-left text-xs uppercase tracking-wide text-muted-foreground border-b border-muted/60">
+                    <th className="py-3 pr-4 font-medium">Patient</th>
+                    <th className="py-3 pr-4 font-medium">Date of Birth</th>
+                    <th className="py-3 pr-4 font-medium">Visit Type</th>
+                    <th className="py-3 pr-4 font-medium">Date &amp; Time</th>
+                    <th className="py-3 pr-4 font-medium">Status</th>
+                    <th className="py-3 font-medium">Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredAppointments.map((apt, index) => (
+                    <tr key={`${apt.patient_name}-${apt.appointment_date}-${apt.appointment_time}-${index}`} className="border-b border-muted/30 last:border-b-0">
+                      <td className="py-4 pr-4 align-top">
+                        <div className="font-semibold text-foreground">{apt.patient_name || "Unknown"}</div>
+                        <div className="text-xs text-muted-foreground">{apt.appointment_type || "Follow Up"}</div>
+                      </td>
+                      <td className="py-4 pr-4 align-top text-muted-foreground">
+                        {apt.patient_dob?.trim() || "—"}
+                      </td>
+                      <td className="py-4 pr-4 align-top text-muted-foreground">{apt.appointment_type || "—"}</td>
+                      <td className="py-4 pr-4 align-top">
+                        <div className="font-medium text-sm">{apt.appointment_date || "—"}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {apt.appointment_time ? `${apt.appointment_time} (${apt.duration ?? 0} min)` : "—"}
+                        </div>
+                      </td>
+                      <td className="py-4 pr-4 align-top">
+                        <span
+                          className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold ${getStatusBadgeClass(
+                            apt.appointment_status,
+                          )}`}
+                        >
+                          {apt.appointment_status || "—"}
+                        </span>
+                      </td>
+                      <td className="py-4 align-top text-muted-foreground">{apt.patient_phone?.trim() || "—"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="py-16 text-center text-muted-foreground">No appointments match your filters.</div>
+          )}
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }
+
