@@ -2183,6 +2183,38 @@
       "page": "logs"
     }
   ],
+  "logs": {
+    "stats": [
+      { "label": "Total Calls", "value": 293, "color": "text-foreground", "filter": "All" },
+      { "label": "Successful", "value": 90, "color": "text-green-600 dark:text-green-400", "filter": "Successful" },
+      { "label": "Rescheduled", "value": 20, "color": "text-yellow-600 dark:text-yellow-400", "filter": "Rescheduled" },
+      { "label": "Cancelled", "value": 11, "color": "text-red-600 dark:text-red-400", "filter": "Cancelled" },
+      { "label": "Failed", "value": 91, "color": "text-red-600 dark:text-red-400", "filter": "Failed" }
+    ],
+    "entries": [
+      { "from": "+12674679709", "to": "+16785788964", "start": "Nov 25, 2025 12:03 PM", "duration": "5:45", "status": "Successful" },
+      { "from": "+12674679709", "to": "+16785788964", "start": "Nov 25, 2025 11:57 AM", "duration": "5:09", "status": "Successful" },
+      { "from": "+12674679709", "to": "+16785788964", "start": "Nov 25, 2025 11:56 AM", "duration": "0:13", "status": "Failed" },
+      { "from": "+12674679709", "to": "+16785788964", "start": "Nov 25, 2025 11:44 AM", "duration": "4:45", "status": "Successful" },
+      { "from": "+12674679709", "to": "+16785788964", "start": "Nov 25, 2025 11:41 AM", "duration": "2:21", "status": "Rescheduled" },
+      { "from": "+14848001175", "to": "+16785788964", "start": "Nov 25, 2025 11:16 AM", "duration": "1:52", "status": "Successful" },
+      { "from": "+12245549339", "to": "+16785788964", "start": "Nov 25, 2025 10:51 AM", "duration": "5:00", "status": "Successful" },
+      { "from": "+14848001175", "to": "+16785788964", "start": "Nov 25, 2025 10:24 AM", "duration": "0:29", "status": "Failed" },
+      { "from": "+12674679709", "to": "+16785788964", "start": "Nov 25, 2025 10:21 AM", "duration": "0:46", "status": "Failed" },
+      { "from": "+12674679709", "to": "+16785788964", "start": "Nov 25, 2025 10:03 AM", "duration": "5:10", "status": "Successful" },
+      { "from": "+14848001179", "to": "+16785788964", "start": "Nov 25, 2025 1:55 AM", "duration": "1:47", "status": "Cancelled" },
+      { "from": "+14848001179", "to": "+16785788964", "start": "Nov 25, 2025 1:47 AM", "duration": "3:36", "status": "Successful" },
+      { "from": "+14848001179", "to": "+16785788964", "start": "Nov 25, 2025 1:44 AM", "duration": "2:32", "status": "Rescheduled" },
+      { "from": "+14848001179", "to": "+16785788964", "start": "Nov 25, 2025 1:41 AM", "duration": "2:53", "status": "Successful" },
+      { "from": "+14848001179", "to": "+16785788964", "start": "Nov 25, 2025 1:37 AM", "duration": "2:39", "status": "Cancelled" },
+      { "from": "+14848001179", "to": "+16785788964", "start": "Nov 25, 2025 1:34 AM", "duration": "3:43", "status": "Successful" },
+      { "from": "+12674679709", "to": "+16785788964", "start": "Nov 24, 2025 6:40 PM", "duration": "6:11", "status": "Successful" },
+      { "from": "+14848001175", "to": "+16785788964", "start": "Nov 24, 2025 4:34 PM", "duration": "1:16", "status": "Failed" },
+      { "from": "+14848001175", "to": "+16785788964", "start": "Nov 24, 2025 4:32 PM", "duration": "1:11", "status": "Failed" },
+      { "from": "+14848001175", "to": "+16785788964", "start": "Nov 24, 2025 4:20 PM", "duration": "1:15", "status": "Rescheduled" },
+      { "from": "+14848001175", "to": "+16785788964", "start": "Nov 24, 2025 4:13 PM", "duration": "0:39", "status": "Failed" }
+    ]
+  },
   "api_cancellation_count": {
     "scheduled": 56,
     "rescheduled": 30,

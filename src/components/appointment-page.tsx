@@ -2,6 +2,7 @@ import { useMemo, useState } from "react"
 import data from "@/data.json"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Search } from "lucide-react"
 
 const filterOptions = [
   "All",
@@ -215,7 +216,7 @@ export function AppointmentPage() {
 
       <div className="space-y-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 order-2 lg:order-1">
             {filterOptions.map((option) => (
               <Button
                 key={option}
@@ -232,13 +233,16 @@ export function AppointmentPage() {
               </Button>
             ))}
             </div>
-            <div className="w-full lg:w-72">
-              <Input
-                value={search}
-                onChange={(event) => setSearch(event.target.value)}
-                placeholder="Search appointments..."
-                className="neumorphic-inset border-0 shadow-none"
-              />
+            <div className="w-full lg:w-1/3 order-1 lg:order-2">
+              <div className="relative">
+                <Input
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                  placeholder="Search appointments..."
+                  className="neumorphic-inset border-0 shadow-none pl-8"
+                />
+                <Search className="size-4 text-muted-foreground absolute left-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
             </div>
           </div>
 
@@ -309,13 +313,13 @@ export function AppointmentPage() {
           </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-3 gap-4">
         {[
           { label: "Total Appointments", value: filteredTotal },
           { label: "Cancelled", value: filteredCancelledCount },
           { label: "Completion Rate", value: `${filteredCompletionRate}%` },
         ].map((stat) => (
-          <div key={stat.label} className="neumorphic-inset border-0 rounded-2xl p-4">
+          <div key={stat.label} className="flex flex-col justify-between neumorphic-inset border-0 rounded-2xl p-4">
             <p className="text-sm font-semibold text-muted-foreground">{stat.label}</p>
             <p className="text-2xl font-bold mt-1">{stat.value}</p>
           </div>
