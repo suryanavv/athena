@@ -233,7 +233,7 @@ export function AppointmentPage() {
               </Button>
             ))}
             </div>
-            <div className="w-full lg:w-1/3 order-1 lg:order-2">
+            <div className="w-full lg:w-2/5 mb-2 lg:mb-0 border-1 lg:order-2">
               <div className="relative">
                 <Input
                   value={search}
@@ -315,13 +315,13 @@ export function AppointmentPage() {
 
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: "Total Appointments", value: filteredTotal },
-          { label: "Cancelled", value: filteredCancelledCount },
-          { label: "Completion Rate", value: `${filteredCompletionRate}%` },
+          { label: "Total Appointments", value: filteredTotal, color: "text-blue-600 dark:text-blue-400" },
+          { label: "Cancelled", value: filteredCancelledCount, color: "text-red-600 dark:text-red-400" },
+          { label: "Completion Rate", value: `${filteredCompletionRate}%`, color: "text-green-600 dark:text-green-400" },
         ].map((stat) => (
           <div key={stat.label} className="flex flex-col justify-between neumorphic-inset border-0 rounded-2xl p-4">
-            <p className="text-sm font-semibold text-muted-foreground">{stat.label}</p>
-            <p className="text-2xl font-bold mt-1">{stat.value}</p>
+            <p className="text-md font-medium text-muted-foreground">{stat.label}</p>
+            <p className={`text-2xl font-bold mt-1 ${stat.color}`}>{stat.value}</p>
           </div>
         ))}
       </div>

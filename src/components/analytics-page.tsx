@@ -17,7 +17,6 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
 } from "@/components/ui/chart"
 import type {
   ChartConfig,
@@ -34,7 +33,6 @@ import data from "@/data.json"
 
 // Destructure data from imported JSON
 const { api_cancellation_count } = data
-const appointments = data.appointments || []
 
 // Transform API cancellation count data for chart
 const apiAppointmentsData = [
@@ -89,8 +87,6 @@ interface AnalyticsPageProps {
 export function AnalyticsPage({ onPageChange }: AnalyticsPageProps) {
   const { dashboard } = data
   const [selectedPieSlice, setSelectedPieSlice] = useState<string | null>(null)
-  const [selectedBar, setSelectedBar] = useState<string | null>(null)
-  const [selectedAppointmentFilter, setSelectedAppointmentFilter] = useState('Today')
   const [chartSize, setChartSize] = useState({ innerRadius: 20, outerRadius: 45 })
 
 
@@ -137,46 +133,6 @@ const cancellationData = rawCancellationReasons.map((r, i) => ({
     return () => window.removeEventListener('resize', updateChartSize)
   }, [])
 
-  // Filter appointments based on selected filter
-  const getFilteredAppointments = () => {
-    const today = new Date()
-    const tomorrow = new Date(today)
-    tomorrow.setDate(today.getDate() + 1)
-
-    // Get start of current week (Sunday)
-    const startOfWeek = new Date(today)
-    startOfWeek.setDate(today.getDate() - today.getDay())
-
-    // Get end of current week (Saturday)
-    const endOfWeek = new Date(startOfWeek)
-    endOfWeek.setDate(startOfWeek.getDate() + 6)
-
-    const formatDate = (date: Date) => {
-      return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
-    }
-
-    const todayStr = formatDate(today)
-    const tomorrowStr = formatDate(tomorrow)
-
-    const parseAppointmentDate = (dateStr: string) => {
-      const [month, day, year] = dateStr.split('/').map(Number)
-      return new Date(year, month - 1, day)
-    }
-
-    switch (selectedAppointmentFilter) {
-      case 'Today':
-        return appointments.filter(apt => apt.appointment_date === todayStr).slice(0, 5)
-      case 'Tomorrow':
-        return appointments.filter(apt => apt.appointment_date === tomorrowStr).slice(0, 5)
-      case 'This Week':
-        return appointments.filter(apt => {
-          const aptDate = parseAppointmentDate(apt.appointment_date)
-          return aptDate >= startOfWeek && aptDate <= endOfWeek
-        }).slice(0, 8)
-      default:
-        return appointments.slice(0, 5)
-    }
-  }
 
 
   const handlePieClick = (data: any) => {
@@ -445,23 +401,3 @@ const cancellationData = rawCancellationReasons.map((r, i) => ({
   )
 }
 
-const DottedBackgroundPattern = () => {
-  return (
-    <pattern
-      id="default-multiple-pattern-dots"
-      x="0"
-      y="0"
-      width="10"
-      height="10"
-      patternUnits="userSpaceOnUse"
-    >
-      <circle
-        className="dark:text-muted/40 text-muted"
-        cx="2"
-        cy="2"
-        r="1"
-        fill="currentColor"
-      />
-    </pattern>
-  );
-};

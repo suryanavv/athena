@@ -1,5 +1,4 @@
 import { SidebarTrigger } from "@/components/ui/sidebar"
-import { motion } from "framer-motion"
 import data from "@/data.json"
 
 interface AppHeaderProps {
