@@ -9,18 +9,127 @@ import {
 } from "@/components/ui/select"
 import data from "@/data.json"
 import { cn } from "@/lib/utils"
+import { IconArrowLeft, IconDownload } from "@tabler/icons-react"
 
 const stats = data.logs?.stats ?? []
 const logsData = data.logs?.entries ?? []
 
+type LogEntry = {
+  from: string
+  to: string
+  start: string
+  duration: string
+  status: string
+  transcription?: Array<{ role: string; message: string }>
+}
+
 export function LogsPage() {
   const [activeFilter, setActiveFilter] = useState("All")
+  const [selectedLog, setSelectedLog] = useState<LogEntry | null>(null)
 
   const filteredLogs = logsData.filter((log) => {
     if (activeFilter === "All") return true
     return log.status === activeFilter
   })
 
+  const handleDownload = () => {
+    if (!selectedLog || !selectedLog.transcription) return
+
+    const transcriptText = selectedLog.transcription
+      .map((msg) => `${msg.role.toUpperCase()}: ${msg.message}`)
+      .join("\n\n")
+
+    const header = `Conversation Transcript\nPhone Number: ${selectedLog.from}\nDate: ${selectedLog.start}\nDuration: ${selectedLog.duration}\nStatus: ${selectedLog.status}\n\n${"=".repeat(60)}\n\n`
+
+    const fullText = header + transcriptText
+
+    const blob = new Blob([fullText], { type: "text/plain" })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = `transcript-${selectedLog.from}-${new Date().getTime()}.txt`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
+  // Show transcript view if a log is selected
+  if (selectedLog) {
+    return (
+      <div className="space-y-6 px-4 lg:px-6">
+        {/* Header */}
+        <div className="neumorphic-soft rounded-2xl p-4 md:p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">
+                Conversational Transcript - {selectedLog.from}
+              </h1>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {selectedLog.start} • Duration: {selectedLog.duration} • Status: {selectedLog.status}
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                onClick={handleDownload}
+                variant="outline"
+                className="neumorphic-soft border-0 gap-2"
+              >
+                <IconDownload size={18} />
+                Download
+              </Button>
+              <Button
+                onClick={() => setSelectedLog(null)}
+                className="neumorphic-btn-primary gap-2"
+              >
+                <IconArrowLeft size={18} />
+                Back to Call Logs
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Transcript Messages */}
+        <div className="neumorphic-inset rounded-2xl p-4 md:p-6">
+          <div className="max-h-[70vh] overflow-y-auto space-y-4">
+            {selectedLog.transcription && selectedLog.transcription.length > 0 ? (
+              selectedLog.transcription.map((msg, index) => (
+                <div
+                  key={index}
+                  className={cn(
+                    "rounded-xl p-4 transition-all",
+                    msg.role === "agent"
+                      ? "neumorphic-soft bg-blue-50/50 dark:bg-blue-950/20 ml-0 mr-auto max-w-[85%]"
+                      : "neumorphic-soft bg-green-50/50 dark:bg-green-950/20 ml-auto mr-0 max-w-[85%]"
+                  )}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span
+                      className={cn(
+                        "text-xs font-semibold uppercase tracking-wide",
+                        msg.role === "agent"
+                          ? "text-blue-600 dark:text-blue-400"
+                          : "text-green-600 dark:text-green-400"
+                      )}
+                    >
+                      {msg.role === "agent" ? "Assistant" : "Patient"}
+                    </span>
+                  </div>
+                  <p className="text-sm text-foreground leading-relaxed">{msg.message}</p>
+                </div>
+              ))
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No transcript available for this call.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show main logs table view
   return (
     <div className="space-y-6 px-4 lg:px-6">
 
@@ -105,7 +214,12 @@ export function LogsPage() {
                           </span>
                         </td>
                         <td className="py-4 align-top">
-                          <Button variant="ghost" size="sm" className="h-8 text-primary hover:text-primary/80 hover:bg-primary/10">
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="h-8 text-primary hover:text-primary/80 hover:bg-primary/10"
+                            onClick={() => setSelectedLog(log as LogEntry)}
+                          >
                             View Conversation
                           </Button>
                         </td>
