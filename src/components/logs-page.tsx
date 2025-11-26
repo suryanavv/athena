@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 import { IconArrowLeft, IconDownload } from "@tabler/icons-react"
 
 const stats = data.logs?.stats ?? []
-const logsData = data.logs?.entries ?? []
+const logsData: LogEntry[] = (data.logs?.entries ?? []) as LogEntry[]
 
 type LogEntry = {
   from: string
@@ -47,7 +47,8 @@ export function LogsPage() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
-    a.download = `transcript-${selectedLog.from}-${new Date().getTime()}.txt`
+    const sanitizedPhone = selectedLog.from.replace(/\+/g, "")
+    a.download = `transcript-${sanitizedPhone}-${new Date().getTime()}.txt`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -63,7 +64,7 @@ export function LogsPage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h1 className="text-2xl font-bold text-foreground">
-                Conversational Transcript - {selectedLog.from}
+                Conversation Transcript - {selectedLog.from}
               </h1>
               <p className="mt-1 text-sm text-muted-foreground">
                 {selectedLog.start} • Duration: {selectedLog.duration} • Status: {selectedLog.status}
@@ -218,7 +219,7 @@ export function LogsPage() {
                             variant="ghost" 
                             size="sm" 
                             className="h-8 text-primary hover:text-primary/80 hover:bg-primary/10"
-                            onClick={() => setSelectedLog(log as LogEntry)}
+                            onClick={() => setSelectedLog(log)}
                           >
                             View Conversation
                           </Button>
