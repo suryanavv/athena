@@ -2219,5 +2219,378 @@
     "scheduled": 56,
     "rescheduled": 30,
     "cancelled": 37
-  }
+  },
+  "call_transcripts": [
+    {
+      "id": 293,
+      "call_id": "conv_9001kaxzhc8rfjhsj5yv831fsfpv",
+      "from_phone": "+12674679709",
+      "to_phone": "+16785788964",
+      "from_time": "2025-11-25T17:03:49",
+      "duration": 345,
+      "end_time": "2025-11-25T17:09:34",
+      "status": "scheduled",
+      "transcription": [
+        {
+          "role": "agent",
+          "message": "Hello, Thank you for calling Athena Health clinic. If this is a medical emergency please hang up now and dial nine one one. Otherwise, How can I help you today?"
+        },
+        {
+          "role": "user",
+          "message": "Hey, I would like to book an appointment for May, May 2026. Do we have any available slots for that date?"
+        },
+        {
+          "role": "agent",
+          "message": "Hey there! I'd be happy to help you schedule an appointment. Just to clarify, are you a new patient with us, or have you visited our clinic before?"
+        },
+        {
+          "role": "user",
+          "message": "This is my first appointment and I did not visit the clinic yet."
+        },
+        {
+          "role": "agent",
+          "message": "Perfect! Since you're a new patient, I'll need to collect some information to get you set up in our system. Let's start with your first name — what's your first name?"
+        },
+        {
+          "role": "user",
+          "message": "Toni."
+        },
+        {
+          "role": "agent",
+          "message": "Great, thank you Toni. And what's your last name?"
+        },
+        {
+          "role": "user",
+          "message": "Vamos allá."
+        },
+        {
+          "role": "agent",
+          "message": "I want to make sure I get that spelled correctly. Could you please spell your last name for me?"
+        },
+        {
+          "role": "user",
+          "message": "P as in Peter, E as in Adam, M as in Mary, A as in Adam, R as in Robert, A as in Adam. Pamela."
+        },
+        {
+          "role": "agent",
+          "message": "Got it, so that's P-E-M-A-R-A, Pemara. Is that correct?"
+        },
+        {
+          "role": "user",
+          "message": "P-E-M-A"
+        },
+        {
+          "role": "agent",
+          "message": "Thank you for clarifying. So your last name is P-E-M-A, Pema. Is that right?"
+        },
+        {
+          "role": "user",
+          "message": "P as in Peter, A as in Adam, M as in Mary, A as in Adam, R as in Robert, A"
+        },
+        {
+          "role": "agent",
+          "message": "Okay, so that's P-A-M-A-R-A, Pamara. Did I get that right?..."
+        },
+        {
+          "role": "user",
+          "message": "as in Adam Yes. Yes"
+        },
+        {
+          "role": "agent",
+          "message": "Perfect, thank you! So your name is Toni Pamara. Now, what's your date of birth?"
+        },
+        {
+          "role": "user",
+          "message": "0406-1990."
+        },
+        {
+          "role": "agent",
+          "message": "Just to confirm, is that April sixth, nineteen ninety?"
+        },
+        {
+          "role": "user",
+          "message": "Yes, ma'am."
+        },
+        {
+          "role": "agent",
+          "message": "Great! And last thing — would you like me to use the phone number you're calling from, or would you prefer to provide a different number?"
+        },
+        {
+          "role": "user",
+          "message": "A different number?"
+        },
+        {
+          "role": "agent",
+          "message": "Sure, what phone number would you like me to use for your record?"
+        },
+        {
+          "role": "user",
+          "message": "Just give me a second. It's 224-554-9339."
+        },
+        {
+          "role": "agent",
+          "message": "Let me get you registered"
+        },
+        {
+          "role": "agent",
+          "message": "Excellent! I've got you all set up in our system, Toni. Now, you mentioned you'd like to book an appointment for May twenty twenty-six. That's quite a ways out! Could you give me a specific date in May that you're looking for, or would you like me to check what's available early in the month?"
+        },
+        {
+          "role": "user",
+          "message": "Not early in the month, but do we have anything in April then?"
+        },
+        {
+          "role": "agent",
+          "message": "Sure! Let me check April twenty twenty-six for you. What date in April would work best for you?"
+        },
+        {
+          "role": "user",
+          "message": "Maybe April 16th?"
+        },
+        {
+          "role": "agent",
+          "message": "Let me check availability for that date."
+        },
+        {
+          "role": "agent",
+          "message": "I apologize, but our scheduling system only allows appointments to be booked up to ninety days in advance. April twenty twenty-six is beyond that window. Would you like to schedule something within the next three months instead? I can check availability for dates coming up soon."
+        },
+        {
+          "role": "user",
+          "message": "February?"
+        },
+        {
+          "role": "agent",
+          "message": "Absolutely! February works perfectly. What date in February would you prefer for your appointment?"
+        },
+        {
+          "role": "user",
+          "message": "February 30th?"
+        },
+        {
+          "role": "agent",
+          "message": "I appreciate you checking, but February doesn't have a thirtieth day — it only goes up to the twenty-eighth this year. Would you like to choose another..."
+        },
+        {
+          "role": "user",
+          "message": "Okay."
+        },
+        {
+          "role": "agent",
+          "message": "Would you..."
+        },
+        {
+          "role": "user",
+          "message": "February."
+        },
+        {
+          "role": "agent",
+          "message": "What date in February would work for you? Just keep in mind February goes up to the twenty-eighth."
+        },
+        {
+          "role": "user",
+          "message": "February 6th?"
+        },
+        {
+          "role": "agent",
+          "message": "Let me check what's available."
+        },
+        {
+          "role": "agent",
+          "message": "Great news! I have availability on Friday, February sixth. I have both morning and afternoon slots available. Would you prefer a morning or afternoon appointment?"
+        },
+        {
+          "role": "user",
+          "message": "Afternoon?"
+        },
+        {
+          "role": "agent",
+          "message": "..."
+        },
+        {
+          "role": "user",
+          "message": "At 3 30?"
+        },
+        {
+          "role": "agent",
+          "message": "I'm sorry, I don't have a three thirty slot available on that day. For the afternoon, I have two o'clock, two fifteen, two thirty, two forty-five, four o'clock, and four fifteen. Which of those times would work best for you?"
+        },
+        {
+          "role": "user",
+          "message": "4 15?"
+        },
+        {
+          "role": "agent",
+          "message": "Perfect! Before I confirm, may I ask the reason for your visit? This helps us better prepare for your appointment."
+        },
+        {
+          "role": "user",
+          "message": "General checkup"
+        },
+        {
+          "role": "agent",
+          "message": "Excellent. Just to confirm, you'd like to schedule an appointment on Friday, February sixth, twenty twenty-six at four fifteen PM. Is that correct?"
+        },
+        {
+          "role": "user",
+          "message": "? Yes."
+        },
+        {
+          "role": "agent",
+          "message": "Great, let me book that for you."
+        },
+        {
+          "role": "agent",
+          "message": "Perfect! I've scheduled your appointment for Friday, February sixth, twenty twenty-six at four fifteen PM. You should receive a confirmation shortly. Is there anything else I can help you with today?"
+        },
+        {
+          "role": "user",
+          "message": "That should be it thank you."
+        },
+        {
+          "role": "agent",
+          "message": "You're very welcome, Toni! We look forward to seeing you in February. Have a wonderful day!"
+        }
+      ],
+      "created_at": "2025-11-25T17:09:37.291268"
+    },
+    {
+      "id": 294,
+      "call_id": "conv_8745jkxmnp3qrstu9vwx123ghijk",
+      "from_phone": "+14848001175",
+      "to_phone": "+16785788964",
+      "from_time": "2025-11-24T14:22:15",
+      "duration": 178,
+      "end_time": "2025-11-24T14:25:13",
+      "status": "rescheduled",
+      "transcription": [
+        {
+          "role": "agent",
+          "message": "Good afternoon, Athena Health clinic. This is Sarah. How may I assist you today?"
+        },
+        {
+          "role": "user",
+          "message": "Hi Sarah, this is David Johnson. I have an appointment scheduled for tomorrow at ten thirty, but I need to reschedule it."
+        },
+        {
+          "role": "agent",
+          "message": "Of course, David. Let me pull up your appointment. Can you confirm your date of birth for me?"
+        },
+        {
+          "role": "user",
+          "message": "October ninth, two thousand eighteen."
+        },
+        {
+          "role": "agent",
+          "message": "Thank you, David. I see your appointment for tomorrow, November twenty-fifth at ten thirty AM with Dr. Nelson for a hypertension monitoring. Is everything alright?"
+        },
+        {
+          "role": "user",
+          "message": "Yes, everything's fine. I just have a work conflict that came up unexpectedly. Can we move it to next week?"
+        },
+        {
+          "role": "agent",
+          "message": "Absolutely, I understand. Let me check Dr. Nelson's availability for next week. What days work best for you?"
+        },
+        {
+          "role": "user",
+          "message": "I'm pretty flexible. Maybe Tuesday or Wednesday afternoon?"
+        },
+        {
+          "role": "agent",
+          "message": "Perfect! I have Tuesday, December second at two PM or Wednesday, December third at three fifteen PM. Which would you prefer?"
+        },
+        {
+          "role": "user",
+          "message": "Let's do Tuesday at two PM."
+        },
+        {
+          "role": "agent",
+          "message": "Excellent choice. I've cancelled your appointment for tomorrow and rescheduled you for Tuesday, December second at two PM with Dr. Nelson. You'll receive a confirmation text shortly."
+        },
+        {
+          "role": "user",
+          "message": "Perfect, thank you so much for your help."
+        },
+        {
+          "role": "agent",
+          "message": "You're very welcome, David! Is there anything else I can help you with today?"
+        },
+        {
+          "role": "user",
+          "message": "No, that's all. Thank you!"
+        },
+        {
+          "role": "agent",
+          "message": "Have a great day, and we'll see you on December second!"
+        }
+      ],
+      "created_at": "2025-11-24T14:25:15.482391"
+    },
+    {
+      "id": 295,
+      "call_id": "conv_2456lmnop8qrst3uvwx789cdefg",
+      "from_phone": "+13126235666",
+      "to_phone": "+16785788964",
+      "from_time": "2025-11-23T09:15:42",
+      "duration": 142,
+      "end_time": "2025-11-23T09:18:04",
+      "status": "completed",
+      "transcription": [
+        {
+          "role": "agent",
+          "message": "Thank you for calling Athena Health clinic. This is Jennifer speaking. How can I help you?"
+        },
+        {
+          "role": "user",
+          "message": "Hi, I'm calling to find out what your clinic hours are. Are you open on Saturdays?"
+        },
+        {
+          "role": "agent",
+          "message": "Great question! We're open Monday through Friday from eight AM to six PM. On Saturdays, we have limited hours from nine AM to one PM. We're closed on Sundays and major holidays."
+        },
+        {
+          "role": "user",
+          "message": "Okay, that's helpful. And do you accept walk-ins or is it appointment only?"
+        },
+        {
+          "role": "agent",
+          "message": "We primarily operate on an appointment basis to ensure you receive quality care without long wait times. However, we do accept walk-ins for urgent matters, though there may be a longer wait depending on our schedule."
+        },
+        {
+          "role": "user",
+          "message": "Got it. And what kind of services do you offer? I'm new to the area."
+        },
+        {
+          "role": "agent",
+          "message": "Welcome to the area! We offer comprehensive primary care services including annual physical exams, chronic disease management, vaccinations, minor urgent care, lab work, and specialist referrals. Dr. Nelson is a general physician with over fifteen years of experience."
+        },
+        {
+          "role": "user",
+          "message": "That sounds perfect. Do you take insurance? I have Blue Cross Blue Shield."
+        },
+        {
+          "role": "agent",
+          "message": "Yes, we do accept Blue Cross Blue Shield along with most major insurance providers. I'd recommend calling back with your specific policy information so we can verify your coverage before your first visit."
+        },
+        {
+          "role": "user",
+          "message": "Great, I'll do that. Thank you so much for all the information."
+        },
+        {
+          "role": "agent",
+          "message": "You're very welcome! Is there anything else I can help you with today?"
+        },
+        {
+          "role": "user",
+          "message": "No, that's everything. Thanks again!"
+        },
+        {
+          "role": "agent",
+          "message": "Have a wonderful day, and we hope to see you soon at Athena Health clinic!"
+        }
+      ],
+      "created_at": "2025-11-23T09:18:06.173529"
+    }
+  ]
 }
