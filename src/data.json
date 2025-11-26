@@ -1,0 +1,2231 @@
+{
+  "patientAgeData": [
+    { "name": "Young Adults (18-25)", "value": 12, "color": "#8884d8" },
+    { "name": "Adults (26-35)", "value": 6, "color": "#82ca9d" },
+    { "name": "Middle Age (36-45)", "value": 3, "color": "#ffc658" },
+    { "name": "Others", "value": 1, "color": "#ff7c7c" }
+  ],
+  "appointmentData": [
+    { "day": "Mon", "scheduled": 5, "cancelled": 1 },
+    { "day": "Tue", "scheduled": 7, "cancelled": 2 },
+    { "day": "Wed", "scheduled": 6, "cancelled": 1 },
+    { "day": "Thu", "scheduled": 8, "cancelled": 3 },
+    { "day": "Fri", "scheduled": 4, "cancelled": 0 },
+    { "day": "Sat", "scheduled": 3, "cancelled": 1 },
+    { "day": "Sun", "scheduled": 2, "cancelled": 0 }
+  ],
+  "appointmentsByDate": {
+    "2025-11-1": [],
+    "2025-11-2": [],
+    "2025-11-3": [],
+    "2025-11-4": [],
+    "2025-11-5": [],
+    "2025-11-6": [],
+    "2025-11-7": [],
+    "2025-11-8": [],
+    "2025-11-9": [],
+    "2025-11-10": [],
+    "2025-11-11": [],
+    "2025-11-12": [],
+    "2025-11-13": [],
+    "2025-11-14": [],
+    "2025-11-15": [],
+    "2025-11-16": [],
+    "2025-11-17": [
+      { "patient": "Ariana Grande", "doctor": "Martha Nelson", "time": "02:00 PM", "status": "Completed", "reason": "Annual physical examination" },
+      { "patient": "David Johnson", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "In Progress", "reason": "Follow-up consultation" },
+      { "patient": "Jonas Kahnwald", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "Scheduled", "reason": "Blood pressure check" },
+      { "patient": "Rohini Chintala", "doctor": "Martha Nelson", "time": "10:00 AM", "status": "Scheduled", "reason": "Vaccination appointment" },
+      { "patient": "Rohini Chintala", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Scheduled", "reason": "Medication review" },
+      { "patient": "Tony Pamera", "doctor": "Martha Nelson", "time": "03:00 PM", "status": "Cancelled", "reason": "Chronic pain management" },
+      { "patient": "Michael Smith", "doctor": "Martha Nelson", "time": "04:30 PM", "status": "Scheduled", "reason": "Lab results discussion" }
+    ],
+    "2025-11-18": [
+      { "patient": "David Johnson", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Completed", "reason": "Diabetes management" },
+      { "patient": "Vinay Kumar", "doctor": "Martha Nelson", "time": "11:00 AM", "status": "Scheduled", "reason": "Thyroid check" },
+      { "patient": "Noah Brooks", "doctor": "Martha Nelson", "time": "01:00 PM", "status": "No-show", "reason": "Skin rash evaluation" },
+      { "patient": "Ariana Galea", "doctor": "Martha Nelson", "time": "02:30 PM", "status": "Scheduled", "reason": "Mental health consultation" },
+      { "patient": "Ria Gupta", "doctor": "Martha Nelson", "time": "04:00 PM", "status": "In Progress", "reason": "Pregnancy check-up" }
+    ],
+    "2025-11-19": [
+      { "patient": "Jonas Kahnwald", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "Scheduled", "reason": "Cardiac evaluation" },
+      { "patient": "Micheal Jordan", "doctor": "Martha Nelson", "time": "09:30 AM", "status": "Completed", "reason": "Sports injury assessment" },
+      { "patient": "Thomas Shelby", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Cancelled", "reason": "Allergy treatment" },
+      { "patient": "Ruby Singh", "doctor": "Martha Nelson", "time": "03:30 PM", "status": "Scheduled", "reason": "Women's health screening" }
+    ],
+    "2025-11-20": [
+      { "patient": "Rohini Chintala", "doctor": "Martha Nelson", "time": "10:00 AM", "status": "In Progress", "reason": "Pediatric consultation" },
+      { "patient": "Gyanendra Kuppanedi", "doctor": "Martha Nelson", "time": "11:30 AM", "status": "Scheduled", "reason": "Eye examination" },
+      { "patient": "Aditya Srikhar", "doctor": "Martha Nelson", "time": "01:30 PM", "status": "Completed", "reason": "Dental referral" },
+      { "patient": "Ben Jordan", "doctor": "Martha Nelson", "time": "03:00 PM", "status": "Scheduled", "reason": "Sleep disorder evaluation" },
+      { "patient": "Max Traver", "doctor": "Martha Nelson", "time": "04:30 PM", "status": "No-show", "reason": "Weight management" }
+    ],
+    "2025-11-21": [
+      { "patient": "Rohini Chintala", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Completed", "reason": "Post-surgery follow-up" },
+      { "patient": "Jonas Kahnwald", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Scheduled", "reason": "Chronic fatigue evaluation" },
+      { "patient": "David Smith", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "In Progress", "reason": "Back pain assessment" },
+      { "patient": "Tony Pomara", "doctor": "Martha Nelson", "time": "02:00 PM", "status": "Scheduled", "reason": "Asthma management" },
+      { "patient": "Ariana Grande", "doctor": "Martha Nelson", "time": "03:30 PM", "status": "Cancelled", "reason": "Anxiety treatment" },
+      { "patient": "Walter White", "doctor": "Martha Nelson", "time": "04:00 PM", "status": "Scheduled", "reason": "Cancer screening" }
+    ],
+    "2025-11-22": [
+      { "patient": "Vinay Kumar", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Scheduled", "reason": "Migraine consultation" },
+      { "patient": "Noah Brooks", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "Scheduled", "reason": "Joint pain evaluation" },
+      { "patient": "Michael Smith", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Scheduled", "reason": "Depression therapy" },
+      { "patient": "Roshan Savio", "doctor": "Martha Nelson", "time": "01:30 PM", "status": "Scheduled", "reason": "Ear infection treatment" },
+      { "patient": "Dibyananda Deshpande", "doctor": "Martha Nelson", "time": "03:00 PM", "status": "Scheduled", "reason": "Digestive issues" }
+    ],
+    "2025-11-23": [
+      { "patient": "Tony Pamera", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Scheduled", "reason": "Diabetes follow-up" },
+      { "patient": "Tony Pamera", "doctor": "Martha Nelson", "time": "09:30 AM", "status": "Scheduled", "reason": "Blood sugar monitoring" },
+      { "patient": "Tony Pamera", "doctor": "Martha Nelson", "time": "10:00 AM", "status": "Scheduled", "reason": "Insulin adjustment" },
+      { "patient": "Ariana Galea", "doctor": "Martha Nelson", "time": "11:30 AM", "status": "Scheduled", "reason": "Nutrition counseling" },
+      { "patient": "John Taylor", "doctor": "Martha Nelson", "time": "01:00 PM", "status": "Scheduled", "reason": "Physical therapy referral" },
+      { "patient": "Rina Marth", "doctor": "Martha Nelson", "time": "02:30 PM", "status": "Scheduled", "reason": "Vaccination booster" }
+    ],
+    "2025-11-24": [
+      { "patient": "Ria Gupta", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Scheduled", "reason": "Prenatal care" },
+      { "patient": "Micheal Jordan", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "Scheduled", "reason": "Orthopedic consultation" },
+      { "patient": "Thomas Shelby", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Scheduled", "reason": "Respiratory check" },
+      { "patient": "Ruby Singh", "doctor": "Martha Nelson", "time": "01:30 PM", "status": "Scheduled", "reason": "Gynecological exam" },
+      { "patient": "Gyanendra Kuppanedi", "doctor": "Martha Nelson", "time": "03:00 PM", "status": "Scheduled", "reason": "Vision screening" },
+      { "patient": "Aditya Srikhar", "doctor": "Martha Nelson", "time": "04:30 PM", "status": "Scheduled", "reason": "ADHD evaluation" }
+    ],
+    "2025-11-25": [
+      { "patient": "Ariana Grande", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Scheduled", "reason": "Mental health follow-up" },
+      { "patient": "David Johnson", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "Scheduled", "reason": "Hypertension monitoring" },
+      { "patient": "Jonas Kahnwald", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Scheduled", "reason": "Cardiology referral" },
+      { "patient": "Rohini Chintala", "doctor": "Martha Nelson", "time": "01:30 PM", "status": "Scheduled", "reason": "Well-child visit" },
+      { "patient": "Tony Pamera", "doctor": "Martha Nelson", "time": "03:00 PM", "status": "Scheduled", "reason": "Chronic pain management" },
+      { "patient": "Michael Smith", "doctor": "Martha Nelson", "time": "04:00 PM", "status": "Scheduled", "reason": "Medication adjustment" }
+    ],
+    "2025-11-26": [
+      { "patient": "Ariana Grande", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Scheduled", "reason": "Mental health follow-up" },
+      { "patient": "David Johnson", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "Scheduled", "reason": "Hypertension monitoring" },
+      { "patient": "Jonas Kahnwald", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Scheduled", "reason": "Cardiology referral" },
+      { "patient": "Rohini Chintala", "doctor": "Martha Nelson", "time": "01:30 PM", "status": "Scheduled", "reason": "Well-child visit" },
+      { "patient": "Tony Pamera", "doctor": "Martha Nelson", "time": "03:00 PM", "status": "Scheduled", "reason": "Chronic pain management" },
+      { "patient": "Michael Smith", "doctor": "Martha Nelson", "time": "04:00 PM", "status": "Scheduled", "reason": "Medication adjustment" }
+    ],
+    "2025-11-27": [],
+    "2025-11-28": [],
+    "2025-11-29": [],
+    "2025-11-30": [
+      { "patient": "Ariana Grande", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Scheduled", "reason": "Mental health follow-up" },
+      { "patient": "David Johnson", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "Scheduled", "reason": "Hypertension monitoring" },
+      { "patient": "Jonas Kahnwald", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Scheduled", "reason": "Cardiology referral" },
+      { "patient": "Rohini Chintala", "doctor": "Martha Nelson", "time": "01:30 PM", "status": "Scheduled", "reason": "Well-child visit" },
+      { "patient": "Tony Pamera", "doctor": "Martha Nelson", "time": "03:00 PM", "status": "Scheduled", "reason": "Chronic pain management" },
+      { "patient": "Michael Smith", "doctor": "Martha Nelson", "time": "04:00 PM", "status": "Scheduled", "reason": "Medication adjustment" },
+      { "patient": "Ben Jordan", "doctor": "Martha Nelson", "time": "04:30 PM", "status": "Scheduled", "reason": "Sleep study results" },
+      { "patient": "Ariana Grande", "doctor": "Martha Nelson", "time": "09:00 AM", "status": "Scheduled", "reason": "Mental health follow-up" },
+      { "patient": "David Johnson", "doctor": "Martha Nelson", "time": "10:30 AM", "status": "Scheduled", "reason": "Hypertension monitoring" },
+      { "patient": "Jonas Kahnwald", "doctor": "Martha Nelson", "time": "12:00 PM", "status": "Scheduled", "reason": "Cardiology referral" },
+      { "patient": "Rohini Chintala", "doctor": "Martha Nelson", "time": "01:30 PM", "status": "Scheduled", "reason": "Well-child visit" },
+      { "patient": "Tony Pamera", "doctor": "Martha Nelson", "time": "03:00 PM", "status": "Scheduled", "reason": "Chronic pain management" },
+      { "patient": "Michael Smith", "doctor": "Martha Nelson", "time": "04:00 PM", "status": "Scheduled", "reason": "Medication adjustment" }
+    ]
+  },
+  "patients": [
+    {
+      "first_name": "Vinay",
+      "last_name": "Kumar",
+      "dob": "1983-04-01",
+      "phone_number": "+13126235666",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 590,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Noah",
+      "last_name": "Brooks",
+      "dob": "1991-06-30",
+      "phone_number": "+918886448156",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 450,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "David",
+      "last_name": "Johnson",
+      "dob": "2018-10-09",
+      "phone_number": "+14848001175",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 537,
+      "guardians": [
+        {
+          "clinic_id": 56,
+          "first_name": "Stephen",
+          "last_name": "Johnson",
+          "dob": "2004-10-09",
+          "relationship_to_patient": "father",
+          "id": 8
+        }
+      ],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Tony",
+      "last_name": "Pamera",
+      "dob": "1990-04-06",
+      "phone_number": "+12674679709",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 581,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [
+          {
+            "date": "Friday, October 23, 2026",
+            "time": "9:00 AM",
+            "status": "Scheduled"
+          },
+          {
+            "date": "Friday, October 23, 2026",
+            "time": "10:00 AM",
+            "status": "Scheduled"
+          }
+        ],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Ariana",
+      "last_name": "Galea",
+      "dob": "2004-10-09",
+      "phone_number": "+14848001175",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 584,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "John",
+      "last_name": "Taylor",
+      "dob": "2000-11-01",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 603,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Rina",
+      "last_name": "Marth",
+      "dob": "1993-02-01",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 605,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Akhil",
+      "last_name": "Noma",
+      "dob": "1995-12-16",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 608,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Akhil",
+      "last_name": "Noma",
+      "dob": "1995-06-06",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 609,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Ellie",
+      "last_name": "Belle",
+      "dob": "1996-02-01",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 610,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Rohini",
+      "last_name": "Partha",
+      "dob": "1994-10-01",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 611,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Ria",
+      "last_name": "Gupta",
+      "dob": "1996-03-15",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 612,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [
+          {
+            "date": "Friday, September 25, 2026",
+            "time": "9:00 AM",
+            "status": "Scheduled"
+          }
+        ],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Dibyananda",
+      "last_name": "Deshpande",
+      "dob": "1996-10-01",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 614,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Micheal",
+      "last_name": "Jordan",
+      "dob": "1990-04-24",
+      "phone_number": "+916305128196",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 616,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": [
+          {
+            "date": "November 21, 2025",
+            "time": "3:00 PM",
+            "status": "Completed"
+          }
+        ]
+      }
+    },
+    {
+      "first_name": "Michael",
+      "last_name": "Smith",
+      "dob": "2000-09-22",
+      "phone_number": "+14848001855",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 489,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Gyanendra",
+      "last_name": "Kuppanedi",
+      "dob": "2004-04-24",
+      "phone_number": "+14848001844",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 523,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Ariana",
+      "last_name": "Grande",
+      "dob": "2004-10-09",
+      "phone_number": "+14848001175",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 531,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Rohini",
+      "last_name": "Chintala",
+      "dob": "1983-08-21",
+      "phone_number": "+12245549339",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 579,
+      "guardians": [],
+      "documents": [
+        {
+          "type": "ID Document",
+          "description": "Government-issued identification"
+        },
+        {
+          "type": "Insurance Document",
+          "description": "Insurance identification card"
+        }
+      ],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Tony",
+      "last_name": "Pomara",
+      "dob": "1990-04-06",
+      "phone_number": "+12674679709",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 582,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Ruby",
+      "last_name": "Singh",
+      "dob": "1985-12-01",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 601,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Roshan",
+      "last_name": "Savio",
+      "dob": "1998-12-14",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 606,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "David",
+      "last_name": "Smith",
+      "dob": "2000-09-22",
+      "phone_number": "+16784359514",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 617,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Thomas",
+      "last_name": "Shelby",
+      "dob": "2020-03-24",
+      "phone_number": "+14848001844",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 508,
+      "guardians": [
+        {
+          "clinic_id": 56,
+          "first_name": "James",
+          "last_name": "Shelby",
+          "dob": "2004-04-02",
+          "relationship_to_patient": "father",
+          "id": 3
+        }
+      ],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Max",
+      "last_name": "Traver",
+      "dob": "2007-11-05",
+      "phone_number": "+14848001844",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 509,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Ariana",
+      "last_name": "Grande",
+      "dob": "2004-10-19",
+      "phone_number": "+14848001175",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 558,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Aditya",
+      "last_name": "Srikhar",
+      "dob": "2005-08-14",
+      "phone_number": "+14848001175",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 478,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Max",
+      "last_name": "Traver",
+      "dob": "2000-11-04",
+      "phone_number": "+14848001844",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 500,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Ben",
+      "last_name": "Jordan",
+      "dob": "2004-04-24",
+      "phone_number": "+14848001844",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 527,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Ariana",
+      "last_name": "Grande",
+      "dob": "1983-10-09",
+      "phone_number": "+14848001175",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 538,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Tony",
+      "last_name": "Tamara",
+      "dob": "1990-04-06",
+      "phone_number": "+12674679709",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 580,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Rohini",
+      "last_name": "Chintala",
+      "dob": "1993-08-21",
+      "phone_number": "+12245549339",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 583,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Walter",
+      "last_name": "White",
+      "dob": "2007-03-07",
+      "phone_number": "+916305128196",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 587,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Sukanya",
+      "last_name": "Thakalapalli",
+      "dob": "1965-04-06",
+      "phone_number": "+12674679709",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 600,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Toni",
+      "last_name": "Pamara",
+      "dob": "1990-04-06",
+      "phone_number": "+12674679709",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 602,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Joy",
+      "last_name": "Martin",
+      "dob": "1998-11-01",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 604,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Akhil",
+      "last_name": "Noma",
+      "dob": "1995-12-06",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 607,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Raju",
+      "last_name": "Gumadi",
+      "dob": "1996-01-02",
+      "phone_number": "+14848001179",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 613,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Jonas",
+      "last_name": "Kahnwald",
+      "dob": "2000-08-06",
+      "phone_number": "+916305128196",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 453,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    },
+    {
+      "first_name": "Kumar",
+      "last_name": "Joe",
+      "dob": "2004-04-24",
+      "phone_number": "+14848001844",
+      "clinic_id": 56,
+      "status": "active",
+      "id": 501,
+      "guardians": [],
+      "documents": [],
+      "appointments": {
+        "upcoming": [],
+        "past": []
+      }
+    }
+  ],
+  "appointments": [
+    {
+      "patient_name": "John Smith",
+      "patient_dob": "05/15/1985",
+      "patient_phone": "+1-555-0123",
+      "appointment_date": "11/25/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Sarah Johnson",
+      "patient_dob": "03/22/1990",
+      "patient_phone": "+1-555-0124",
+      "appointment_date": "11/25/2025",
+      "appointment_time": "10:30 AM",
+      "appointment_type": "Consultation",
+      "appointment_status": "scheduled",
+      "duration": 30
+    },
+    {
+      "patient_name": "Michael Brown",
+      "patient_dob": "11/08/1975",
+      "patient_phone": "+1-555-0125",
+      "appointment_date": "11/25/2025",
+      "appointment_time": "02:00 PM",
+      "appointment_type": "Check-up",
+      "appointment_status": "scheduled",
+      "duration": 20
+    },
+    {
+      "patient_name": "Emily Davis",
+      "patient_dob": "07/14/1988",
+      "patient_phone": "+1-555-0126",
+      "appointment_date": "11/26/2025",
+      "appointment_time": "08:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Robert Wilson",
+      "patient_dob": "09/30/1965",
+      "patient_phone": "+1-555-0127",
+      "appointment_date": "11/26/2025",
+      "appointment_time": "11:15 AM",
+      "appointment_type": "Consultation",
+      "appointment_status": "scheduled",
+      "duration": 25
+    },
+    {
+      "patient_name": "Lisa Anderson",
+      "patient_dob": "12/05/1992",
+      "patient_phone": "+1-555-0128",
+      "appointment_date": "11/26/2025",
+      "appointment_time": "03:45 PM",
+      "appointment_type": "Check-up",
+      "appointment_status": "scheduled",
+      "duration": 20
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/02/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/02/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/02/2025",
+      "appointment_time": "04:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/10/2025",
+      "appointment_time": "08:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/10/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/10/2025",
+      "appointment_time": "09:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/10/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/10/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/10/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/10/2025",
+      "appointment_time": "04:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "12/10/2025",
+      "appointment_time": "10:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/24/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/23/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/23/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/15/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/11/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/10/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/07/2025",
+      "appointment_time": "01:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/05/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "11/03/2025",
+      "appointment_time": "11:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "05:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "11:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "11:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/29/2025",
+      "appointment_time": "11:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/28/2025",
+      "appointment_time": "04:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/28/2025",
+      "appointment_time": "04:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/28/2025",
+      "appointment_time": "01:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/26/2025",
+      "appointment_time": "01:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/26/2025",
+      "appointment_time": "01:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "02:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "02:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "01:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "11:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/25/2025",
+      "appointment_time": "02:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/24/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/24/2025",
+      "appointment_time": "03:03 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/24/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/24/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/24/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/24/2025",
+      "appointment_time": "12:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/23/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/21/2025",
+      "appointment_time": "04:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/21/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/21/2025",
+      "appointment_time": "03:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/20/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/19/2025",
+      "appointment_time": "12:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/19/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/19/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/19/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/18/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/18/2025",
+      "appointment_time": "04:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "03:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "03:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "02:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "08:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "04:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "03:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/17/2025",
+      "appointment_time": "02:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "10:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "10:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "10:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "10:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "03:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "02:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "12:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "11:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "04:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "04:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "04:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "04:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "04:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "04:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "03:45 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/16/2025",
+      "appointment_time": "03:45 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "04:00 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "03:30 PM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/15/2025",
+      "appointment_time": "05:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/14/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/14/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/14/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/14/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/14/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/14/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/14/2025",
+      "appointment_time": "03:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/13/2025",
+      "appointment_time": "10:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/13/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/13/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "cancelled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/13/2025",
+      "appointment_time": "09:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/13/2025",
+      "appointment_time": "03:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/12/2025",
+      "appointment_time": "09:30 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "scheduled",
+      "duration": 15
+    },
+    {
+      "patient_name": "Unknown",
+      "patient_dob": "",
+      "patient_phone": "",
+      "appointment_date": "10/10/2025",
+      "appointment_time": "11:00 AM",
+      "appointment_type": "Follow Up",
+      "appointment_status": "rescheduled",
+      "duration": 15
+    }
+  ],
+  "appointmentConfig": {
+    "title": "Appointments",
+    "filters": [
+      { "label": "All", "value": "all" },
+      { "label": "Yesterday", "value": "yesterday" },
+      { "label": "Today", "value": "today" },
+      { "label": "Tomorrow", "value": "tomorrow" },
+      { "label": "This Week", "value": "week" }
+    ]
+  },
+  "dashboard": {
+    "stats": [
+      {
+        "id": "totalPatients",
+        "label": "Total Patients",
+        "value": 19,
+        "icon": "IconUsers"
+      },
+      {
+        "id": "totalClients",
+        "label": "Total Clients",
+        "value": 0,
+        "icon": "IconUsers"
+      },
+      {
+        "id": "scheduledRescheduled",
+        "label": "Scheduled/Rescheduled",
+        "value": 86,
+        "icon": "IconCalendar"
+      },
+      {
+        "id": "cancelledAppointments",
+        "label": "Cancelled Appointments",
+        "value": 39,
+        "icon": "IconX"
+      }
+    ],
+    "sections": {
+      "appointmentTrends": {
+        "title": "Appointment Trends",
+        "description": "Today's Appointments - 5",
+        "legend": [
+          {
+            "label": "Scheduled",
+            "color": "var(--chart-1)"
+          },
+          {
+            "label": "Cancelled",
+            "color": "var(--destructive)"
+          }
+        ]
+      },
+      "patientsOverview": {
+        "title": "Patients Overview",
+        "description": "Total Patients: 22",
+        "icon": "IconUsers",
+        "legend": [
+          {
+            "label": "Young Adults (18-25)",
+            "value": 12,
+            "color": "#8884d8"
+          },
+          {
+            "label": "Adults (26-35)",
+            "value": 6,
+            "color": "#82ca9d"
+          },
+          {
+            "label": "Middle Age (36-45)",
+            "value": 3,
+            "color": "#ffc658"
+          },
+          {
+            "label": "Others",
+            "value": 1,
+            "color": "#ff7c7c"
+          }
+        ]
+      },
+      "monthlyAppointmentComparison": {
+        "title": "Monthly Appointment Comparison",
+        "current_month": 9,
+        "last_month": 105,
+        "percentage_change": -91.43,
+        "data": [
+          { "month": "Last Month", "appointments": 105 },
+          { "month": "Current Month", "appointments": 9 }
+        ]
+      }
+    }
+  },
+  "app": {
+    "name": "Maartha Clinic",
+    "taglines": {
+      "loginHero": "Effortlessly manage your medical practice.",
+      "loginSubtext": "Log in to access your dashboard and manage your patients."
+    },
+    "copyright": "Copyright © 2025 EZ Medtech Enterprises LTD.",
+    "login": {
+      "title": "Welcome Back!",
+      "subtitle": "Please Sign in to access your dashboard",
+      "adminLabel": "Admin Login",
+      "doctorLabel": "Doctor Login",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "rememberMeLabel": "Remember me",
+      "forgotPasswordLabel": "Forgot Password?",
+      "loginButton": "Log In",
+      "privacyPolicy": "Privacy Policy"
+    }
+  },
+  "user": {
+    "name": "Martha Nelson",
+    "email": "martha.nelson@ezmedtech.ai",
+    "avatar": "/avatars/doctor.jpg",
+    "role": "General Physician",
+    "phone": "+14709448601"
+  },
+  "navMain": [
+    {
+      "title": "Dashboard",
+      "url": "#",
+      "icon": "IconDashboard",
+      "page": "dashboard"
+    },
+    {
+      "title": "Appointments",
+      "url": "#",
+      "icon": "IconCalendar",
+      "page": "appointments"
+    },
+    {
+      "title": "Logs",
+      "url": "#",
+      "icon": "IconLogs",
+      "page": "logs"
+    }
+  ],
+  "api_cancellation_count": {
+    "scheduled": 56,
+    "rescheduled": 30,
+    "cancelled": 37
+  }
+}
